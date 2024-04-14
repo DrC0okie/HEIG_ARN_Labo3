@@ -36,6 +36,9 @@ As we can see on the training history, we have a smooth cuve and the same perfor
 
 ![](./images/second_confusion_matrix.png)
 
+Mean F1 Score across all folds: 0.8759928322673641
+
+
 
 ### Analyse
 
@@ -50,12 +53,6 @@ The model is performing worse than with 2 classes. And it has a very hard time t
 
 ## Competition
 
-### Model summary
-
-### Performance result
-
-### Training history plot
-
 ### SMOTE
 
 Because n-rem class is under represented, we tried to balance it using SMOTE (Synthetic Minority Oversampling Technique)
@@ -68,7 +65,6 @@ Smote is very easy to implement, when training we pass our x_train y_train to th
 ```python
   x_train, y_train = smote.fit_resample(x_train, y_train)
 ```
-
 
 ### ANOVA
 
@@ -101,8 +97,8 @@ We edited the create_model() function to tune nearly all hyperparameters.
 We tried to tune the following parameters of our model:
 
 - Adding or not second layer
-- Both layer had either 2,4 or 8 neurons
-- Both layer's activation function (sigmoid or ReLu)
+- Both layers had either 2,4 or 8 neurons
+- Both layers's activation function (sigmoid or ReLu)
 - The optimizer (adam or sgd)
 - Learning rate (0.01,0.001, or 0.0001)
 - Momentum (0, 0.8 or 0.99)
@@ -226,6 +222,23 @@ We weren't happy with only 0.886 of F1_score, so we tried to add more neurons/la
 
 Mean F1 Score across all folds: 
 
-### Conclusion
+### Model summary
+
+This is our final model.
+
+![](./images/comp_model_summary.png)
+
+### Training history plot
+![](./images/comp_training_history.png)
+
+
+### Performance result
+![](./images/comp_confusion_matrix.png)
+
+Mean F1 Score across all folds: 0.9016155757218369
+
+### Analyse
+
+The model above was ran using the best hyper parameters found by KerasTuner, with the ANOVA coefficient applied to the features. 50 Feature were choosen. SMOTE wasn't active.
 
 Choosing hyper parameters is tough and take a lot of time. We achieved a very good f1_score and we couldn't get a better model without overfitting it. 
